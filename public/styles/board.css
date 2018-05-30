@@ -1,0 +1,10 @@
+
+.tensor-op {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+}
+
+.cell-seperator {
+  width: 1px;
+}
