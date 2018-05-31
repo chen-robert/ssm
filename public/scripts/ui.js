@@ -32,11 +32,13 @@ $(function () {
   });
 
   $("#train-button").click(function () {
-    setTimeout(() => {
-      const model = window.ml.createModel(uiData.layers);
-      window.ml.train(model);
-      window.ml.predict(model);
-    }, 100);
+    for (let i = 1; i < 10; i++) {
+      setTimeout(() => {
+        const model = window.ml.createModel(uiData.layers);
+        window.ml.train(model);
+        window.ml.predict(model);
+      }, 100 * i);
+    }
   });
 
   $('ul[for="choice-button"] .mdl-menu__item').click(function () {
