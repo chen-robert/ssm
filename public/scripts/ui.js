@@ -1,8 +1,11 @@
 $(function () {
   const uiData = {};
+  let network = null;
+  
   uiData.layers = [];
   uiData.network = "fc";
-
+  uiData.rebuild = true;
+  
   $("#add-button").click(function () {
     switch (uiData.network) {
       case "fc":
@@ -32,9 +35,12 @@ $(function () {
   });
 
   $("#train-button").click(function () {
+    if(uiData.rebuild){
+        uiData.rebuild = false;
+        model = window.ml.createModel(uiData.layers);
+    }
     for (let i = 1; i < 10; i++) {
       setTimeout(() => {
-        const model = window.ml.createModel(uiData.layers);
         window.ml.train(model);
         window.ml.predict(model);
       }, 100 * i);
