@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <title>FTW Login</title>
+  <title>SSM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles/board.css">
 </head>
@@ -21,19 +21,53 @@
     </header>
     <main class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp" style="height: 100px">
-          asdf
-        </div>
-        <div class="mdl-cell mdl-cell--8-col mdl-color--white mdl-shadow--2dp" style="height: 100px">
-          asdf
-        </div>
         <div class="mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">
-          <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp" style="height: 100px">
-            
+          <div class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
+
           </div>
           <div class="cell-seperator" style="height: 20px;"></div>
-          <div class="mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp" style="height: 100px">
-          
+          <div class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
+
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--8-col">
+          <div id="model-area" class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
+            <ul id="tensor-list" class="mdl-list">
+              <li id="input-tensor" class="mdl-list__item mdl-list__item--two-line">
+                <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">backup</i>
+                  <span class="tensor-name">
+                    Input Data
+                  </span>
+                  <span class="tensor-dims mdl-list__item-sub-title">32x32</span>
+                </span>
+              </li>
+            </ul>
+            <div class="mdl-card__actions mdl-card--border">
+            </div>
+          </div>
+          <div class="cell-seperator" style="height: 20px;"></div>
+          <div id="selector-area" class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
+            <button id="choice-button" class="choice-item mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <div class="choice-item mdl-menu__container is-upgraded">
+              <div class="mdl-menu__outline mdl-menu--bottom-right"></div>
+              <ul for="choice-button" class="mdl-menu mdl-js-menu mdl-menu--bottom-right">
+                <li class="mdl-menu__item" value="fc">Lorem</li>
+              </ul>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input name="output-dim" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="outputdim">
+                <label class="mdl-textfield__label" for="outputdim">Output Dim</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+              </div>
+            </div>
+            
+            <button id="add-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              <i class="material-icons mdl-color-text--white">add</i>
+            </button>
           </div>
         </div>
       </div>
@@ -44,7 +78,10 @@
   <!-- Material Design -->
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <!-- Custom JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.2"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.2">
+
+
+  </script>
   <script src="./scripts/data.js"></script>
   <script src="./scripts/main.js"></script>
   <script src="./scripts/ui.js"></script>
