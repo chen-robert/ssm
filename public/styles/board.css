@@ -29,3 +29,12 @@
   top: 5px;
   right: 5px;
 }
+
+#train-button {
+  float: right;
+}
+
+#img-disp {
+  height: 100%;
+  width: 100%;
+}

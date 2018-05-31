@@ -23,14 +23,14 @@
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col mdl-grid mdl-grid--no-spacing">
           <div class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
-
+            <img id="img-disp">
           </div>
           <div class="cell-seperator" style="height: 20px;"></div>
           <div class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
 
           </div>
         </div>
-        <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-cell mdl-cell--8-col" style="margin-top: 0px;">
           <div id="model-area" class="mdl-card mdl-cell mdl-cell--12-col mdl-color--white mdl-shadow--2dp">
             <ul id="tensor-list" class="mdl-list">
               <li id="input-tensor" class="mdl-list__item mdl-list__item--two-line">
@@ -39,11 +39,14 @@
                   <span class="tensor-name">
                     Input Data
                   </span>
-                  <span class="tensor-dims mdl-list__item-sub-title">32x32</span>
+                  <span class="tensor-dims mdl-list__item-sub-title">28x28</span>
                 </span>
               </li>
             </ul>
             <div class="mdl-card__actions mdl-card--border">
+              <button disabled id="train-button" class="mdl-button--colored mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Train
+              </button>
             </div>
           </div>
           <div class="cell-seperator" style="height: 20px;"></div>
@@ -54,7 +57,7 @@
             <div class="choice-item mdl-menu__container is-upgraded">
               <div class="mdl-menu__outline mdl-menu--bottom-right"></div>
               <ul for="choice-button" class="mdl-menu mdl-js-menu mdl-menu--bottom-right">
-                <li class="mdl-menu__item" value="fc">Lorem</li>
+                <li class="mdl-menu__item" value="fc">Fully Connected</li>
               </ul>
             </div>
             <div class="mdl-card__supporting-text">
@@ -85,6 +88,7 @@
   <script src="./scripts/data.js"></script>
   <script src="./scripts/main.js"></script>
   <script src="./scripts/ui.js"></script>
+  <script src="./scripts/disp.js"></script>
 </body>
 
 </html>
