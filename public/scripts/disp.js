@@ -54,8 +54,9 @@ $(function () {
           "yAxes": [{
             "ticks": {
               "beginAtZero": true,
-              steps: 0.1,
-              stepValue: 10
+              min: 0,
+              max: 1,
+              stepSize: 0.1
             }
           }]
         },

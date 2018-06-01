@@ -82,9 +82,9 @@ $(function () {
     if (uiData.running) {
       window.ml.train(model);
 
-      if (ITERS++ % 50 == 0) {
+      if (ITERS++ % 5 == 0) {
         window.ml.predict(model);
       }
     }
-  }, 100);
+  }, 250);
 });
