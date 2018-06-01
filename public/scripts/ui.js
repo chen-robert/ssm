@@ -1,12 +1,13 @@
 $(function () {
   const uiData = {};
   let network = null;
-  
+
   uiData.layers = [];
   uiData.network = "fc";
   uiData.rebuild = true;
-  
-  $("#add-button").click(function () {
+  uiData.running = false;
+
+  function submit() {
     switch (uiData.network) {
       case "fc":
         let outDims = new Number($("input[name=output-dim]").val());
@@ -31,21 +32,30 @@ $(function () {
       case "ops":
         break;
     }
+    setRunning(false);
+  }
 
-  });
+  function setRunning(val) {
+    $("#train-button i").text(val ? "stop" : "play_arrow");
+    uiData.running = val;
+  }
+
+  $("#add-button").click(submit);
 
   $("#train-button").click(function () {
-    if(uiData.rebuild){
-        uiData.rebuild = false;
-        model = window.ml.createModel(uiData.layers);
+    if (uiData.rebuild) {
+      uiData.rebuild = false;
+      model = window.ml.createModel(uiData.layers);
     }
-    for (let i = 1; i < 10; i++) {
-      setTimeout(() => {
-        window.ml.train(model);
-        window.ml.predict(model);
-      }, 100 * i);
-    }
+
+    setRunning(!uiData.running);
   });
+
+  $(".final-input").keypress((e) => {
+    if (e.which == 13) {
+      submit();
+    }
+  })
 
   $('ul[for="choice-button"] .mdl-menu__item').click(function () {
     uiData.network = $(this).attr("value");
@@ -65,4 +75,16 @@ $(function () {
       e.MaterialTextfield.change();
     })
   }
+
+  let ITERS = 0;
+  //Training loop
+  setInterval(() => {
+    if (uiData.running) {
+      window.ml.train(model);
+
+      if (ITERS++ % 50 == 0) {
+        window.ml.predict(model);
+      }
+    }
+  }, 100);
 });

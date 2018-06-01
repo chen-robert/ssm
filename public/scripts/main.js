@@ -13,7 +13,6 @@
 
     layers.forEach((layer, index) => {
       const activation = (index == layers.length - 1) ? "softmax" : "relu";
-      console.log(typeof layer.dims)
       switch (layer.type) {
         case "fc":
           model.add(tf.layers.dense({
@@ -30,7 +29,7 @@
       }
     });
 
-    const LEARNING_RATE = 0.15;
+    const LEARNING_RATE = 0.001;
     const optimizer = tf.train.adam(LEARNING_RATE);
     model.compile({
       optimizer: optimizer,
@@ -89,8 +88,6 @@
           'accuracy': accuracy,
           'set': 'train'
         });
-        batch.xs.print();
-        console.log(accuracyValues);
       }
 
       batch.xs.dispose();
@@ -111,7 +108,7 @@
       const output = model.predict(batch.xs.reshape([-1, 28, 28, 1]));
       window.disp.renderImage(batch.xs.slice([0, 0], [1, 28 ** 2]));
 
-      console.log(output.argMax(1).dataSync()[0]);
+      window.disp.renderProbs(output.dataSync());
     });
   }
 
