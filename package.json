@@ -1,0 +1,27 @@
+{
+  "name": "ssm",
+  "version": "1.0.0",
+  "description": "Super Simple Machines",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamester543/ssm.git"
+  },
+  "keywords": [
+    "nodejs",
+    "tensorflow"
+  ],
+  "author": "Robert Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gamester543/ssm/issues"
+  },
+  "homepage": "https://github.com/gamester543/ssm#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http": "0.0.0"
+  }
+}
