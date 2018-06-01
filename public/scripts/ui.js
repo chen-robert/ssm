@@ -11,6 +11,7 @@ $(function () {
     switch (uiData.network) {
       case "fc":
         let outDims = new Number($("input[name=output-dim]").val());
+        if (isNaN(outDims) || outDims <= 0 || outDims > 50) return;
         uiData.layers.push({
           type: "fc",
           dims: outDims
