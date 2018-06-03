@@ -74,6 +74,7 @@ $(function () {
     lossChart.data.datasets[0].data.push(loss);
     lossChart.data.datasets[1].data.push(accur);
 
+
     lossChart.data.labels.push(lossChart.data.labels.length);
 
     lossChart.update();
@@ -87,7 +88,7 @@ $(function () {
         "datasets": [{
           "label": "Loss",
           "data": [],
-          yAxisId: "loss",
+          yAxisID: "loss",
           "fill": false,
           "backgroundColor": "rgb(201, 0, 0)",
           "borderColor": "rgb(201, 0, 0)",
@@ -95,7 +96,7 @@ $(function () {
         }, {
           "label": "Accuracy",
           "data": [],
-          yAxisId: "accur",
+          yAxisID: "accur",
           "fill": false,
           "backgroundColor": "rgb(0, 0, 201)",
           "borderColor": "rgb(0, 0, 201)",
@@ -115,7 +116,10 @@ $(function () {
               "beginAtZero": true
             },
             position: "left",
-            id: "loss"
+            id: "loss",
+            gridLines: {
+              display: false
+            }
           }, {
             type: "linear",
             "ticks": {
@@ -125,12 +129,18 @@ $(function () {
               stepSize: 0.1
             },
             position: "right",
-            id: "accur"
+            id: "accur",
+            gridLines: {
+              display: false
+            }
           }],
           xAxes: [{
             ticks: {
               autoSkip: true,
               maxTicksLimit: 10
+            },
+            gridLines: {
+              display: false
             }
           }]
         },

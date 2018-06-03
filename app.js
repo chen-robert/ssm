@@ -1,6 +1,7 @@
 const PORT = process.env.PORT || 3000;
 
 const express = require('express');
+const request = require("request");
 
 const app = express();
 const http = require('http').Server(app);
@@ -21,6 +22,20 @@ app.get("/", (req, res) => {
 });
 
 app.use('/', express.static('public/'));
+
+app.get("/proxy/*", (req, res) => {
+  const url = (req.originalUrl).substring("/proxy/".length);
+
+  request(url, (error, response, body) => {
+    if (error) {
+      res.status(404);
+      res.send("Invalid url " + url);
+      return;
+    }
+    res.send(body);
+  });
+
+});
 
 //Universal redirect
 app.get("*", (req, res) => {
