@@ -25,17 +25,23 @@ app.use('/', express.static('public/'));
 
 app.get("/proxy/*", (req, res) => {
   const url = (req.originalUrl).substring("/proxy/".length);
+  
+  console.log(`Attempting to proxy to ${url}`)
 
-  request(url, (error, response, body) => {
+  request({url, encoding: null}, (error, response, body) => {
     if (error) {
       res.status(404);
       res.send("Invalid url " + url);
       return;
     }
-    res.send(body);
+    
+    if (response.headers['content-type'] !== undefined) {
+      res.setHeader("Content-Type", response.headers['content-type']);
+    }
+    res.send(new Buffer(body));
   });
 
-});
+}); 
 
 //Universal redirect
 app.get("*", (req, res) => {

@@ -141,6 +141,10 @@ $(function () {
             },
             gridLines: {
               display: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Iterations"
             }
           }]
         },
