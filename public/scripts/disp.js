@@ -70,7 +70,79 @@ $(function () {
     });
   }
 
+  util.addLossAccur = function (loss, accur) {
+    lossChart.data.datasets[0].data.push(loss);
+    lossChart.data.datasets[1].data.push(accur);
+
+    lossChart.data.labels.push(lossChart.data.labels.length);
+
+    lossChart.update();
+  }
+
+  function createLossChart() {
+    return new Chart($("#loss-disp"), {
+      "type": "line",
+      "data": {
+        "labels": [],
+        "datasets": [{
+          "label": "Loss",
+          "data": [],
+          yAxisId: "loss",
+          "fill": false,
+          "backgroundColor": "rgb(201, 0, 0)",
+          "borderColor": "rgb(201, 0, 0)",
+          "borderWidth": 1
+        }, {
+          "label": "Accuracy",
+          "data": [],
+          yAxisId: "accur",
+          "fill": false,
+          "backgroundColor": "rgb(0, 0, 201)",
+          "borderColor": "rgb(0, 0, 201)",
+          "borderWidth": 1
+        }]
+      },
+      "options": {
+        elements: {
+          point: {
+            radius: 0
+          }
+        },
+        "scales": {
+          "yAxes": [{
+            type: "linear",
+            "ticks": {
+              "beginAtZero": true
+            },
+            position: "left",
+            id: "loss"
+          }, {
+            type: "linear",
+            "ticks": {
+              "beginAtZero": true,
+              min: 0,
+              max: 1,
+              stepSize: 0.1
+            },
+            position: "right",
+            id: "accur"
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: true,
+              maxTicksLimit: 10
+            }
+          }]
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
+  }
+
   const probChart = createProbChart();
+  const lossChart = createLossChart();
 
   window.disp = util;
 });

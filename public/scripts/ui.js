@@ -77,13 +77,16 @@ $(function () {
     })
   }
 
+  const updateFreq = 10;
   let ITERS = 0;
   //Training loop
   setInterval(() => {
     if (uiData.running) {
-      window.ml.train(model);
+      ITERS++;
+      
+      window.ml.train(model, ITERS % updateFreq == 0);
 
-      if (ITERS++ % 5 == 0) {
+      if (ITERS % updateFreq == 0) {
         window.ml.predict(model);
       }
     }
