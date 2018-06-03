@@ -23,6 +23,13 @@
 
           break;
         case "cnn":
+          model.add(tf.layers.conv2d({
+            kernelSize: layer.size,
+            features: layer.features,
+            strides: layers.strides,
+            kernelInitializer: 'varianceScaling',
+            activation: activation
+          }));
           break;
         case "ops":
           break;

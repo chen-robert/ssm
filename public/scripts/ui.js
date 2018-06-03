@@ -29,6 +29,16 @@ $(function () {
 
         break;
       case "cnn":
+        let kernelSize = new Number($("input[name=cnn-size]").val());
+        let features = new Number($("input[name=cnn-features]").val());
+        let strides = new Number($("input[name=cnn-strides]").val());
+
+        uiData.layers.push({
+          type: "cnn",
+          kernelSize,
+          features,
+          strides
+        });
         break;
       case "ops":
         break;
@@ -60,6 +70,9 @@ $(function () {
 
   $('ul[for="choice-button"] .mdl-menu__item').click(function () {
     uiData.network = $(this).attr("value");
+
+    $(".tensor-data").hide();
+    $(`.tensor-data-${$(this).attr("value")}`).show();
   });
 
   function appendTensor(name, dim, icon = "keyboard_arrow_down") {
@@ -83,7 +96,7 @@ $(function () {
   setInterval(() => {
     if (uiData.running) {
       ITERS++;
-      
+
       window.ml.train(model, ITERS % updateFreq == 0);
 
       if (ITERS % updateFreq == 0) {
