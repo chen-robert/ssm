@@ -7,16 +7,36 @@ $(function () {
   uiData.rebuild = true;
   uiData.running = false;
 
+  uiData.currDim = [28, 28, 1];
+
   function submit() {
+    const appendFlatOp = function() {
+      let dim = 1;
+      uiData.currDim.forEach((n) => dim *= n);
+      uiData.currDim = [dim];
+      appendTensor("Flatten", "vertical_align_bottom");
+
+    }
     switch (uiData.network) {
       case "fc":
         let outDims = new Number($("input[name=output-dim]").val());
         if (isNaN(outDims) || outDims <= 0 || outDims > 1024) return;
+
+        //If they forgot to flatten, we flatten for them
+        if (uiData.currDim.length > 1) {
+          uiData.layers.push({
+            type: "ops",
+            operation: "flatten"
+          });
+          appendFlatOp();
+        }
+
         uiData.layers.push({
           type: "fc",
           dims: outDims
         });
-        appendTensor("Fully Connected", [outDims]);
+        uiData.currDim = [outDims];
+        appendTensor("Dense", "horizontal_split");
 
         $("input[name=output-dim]").val("");
         updateMdl();
@@ -39,8 +59,22 @@ $(function () {
           features,
           strides
         });
+
+        uiData.currDim[2] = features.valueOf();
+        appendTensor("Convolve", "filter");
         break;
       case "ops":
+        let operation = $("input[name=ops-choice]").val();
+        uiData.layers.push({
+          type: "ops",
+          operation
+        });
+
+        switch (operation) {
+          case "flatten":
+            appendFlatOp();
+            break;
+        }
         break;
     }
     setRunning(false);
@@ -75,10 +109,10 @@ $(function () {
     $(`.tensor-data-${$(this).attr("value")}`).show();
   });
 
-  function appendTensor(name, dim, icon = "keyboard_arrow_down") {
+  function appendTensor(name, icon = "keyboard_arrow_down") {
     const base = $("#input-tensor").clone().removeAttr("id");
     base.find(".tensor-name").text(name);
-    base.find(".tensor-dims").text(dim.join("x"));
+    base.find(".tensor-dims").text(uiData.currDim.join("x"));
     base.find(".material-icons").text(icon);
 
     $("#tensor-list").append(base);
@@ -90,10 +124,10 @@ $(function () {
     })
   }
 
-  const updateFreq = 10;
+  const updateFreq = 3;
   let ITERS = 0;
   //Training loop
-  setInterval(() => {
+  const trainingLoop = () => {
     if (uiData.running) {
       ITERS++;
 
@@ -103,5 +137,7 @@ $(function () {
         window.ml.predict(model);
       }
     }
-  }, 250);
+    setTimeout(trainingLoop, 1000);
+  }
+  trainingLoop();
 });

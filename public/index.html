@@ -5,9 +5,10 @@
   <title>SSM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="./external/icon.css"> 
+  <link rel="stylesheet" href="./external/icon.css">
   <!-- https://fonts.googleapis.com/icon?family=Material+Icons -->
-  <link rel="stylesheet" href="./external/material.indigo-pink.min.css"> 
+  <link rel="stylesheet" href="./external/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="./external/getmdl-select.min.css">
   <!-- https://code.getmdl.io/1.3.0/material.indigo-pink.min.css -->
 
   <!-- Custom CSS -->
@@ -42,9 +43,9 @@
                 <span class="mdl-list__item-primary-content">
                   <i class="material-icons mdl-list__item-icon">backup</i>
                   <span class="tensor-name">
-                    Input Data
+                    Input
                   </span>
-                <span class="tensor-dims mdl-list__item-sub-title">28x28</span>
+                <span class="tensor-dims mdl-list__item-sub-title">28x28x1</span>
                 </span>
               </li>
             </ul>
@@ -64,32 +65,42 @@
               <ul for="choice-button" class="mdl-menu mdl-js-menu mdl-menu--bottom-right">
                 <li class="mdl-menu__item" value="fc">Fully Connected</li>
                 <li class="mdl-menu__item" value="cnn">Convolution</li>
-                <li class="mdl-menu__item" value="op">Operation</li>
+                <li class="mdl-menu__item" value="ops">Operation</li>
               </ul>
             </div>
-            <div class="mdl-card__supporting-text">
+            <div class="mdl-card__supporting-text" style="overflow: visible;">
               <div class="tensor-data tensor-data-fc">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input name="output-dim" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="outputdim">
+                  <input name="output-dim" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="outputdim" value="10">
                   <label class="mdl-textfield__label" for="outputdim">Output Dim</label>
                   <span class="mdl-textfield__error">Input is not a number!</span>
                 </div>
               </div>
               <div class="tensor-data tensor-data-cnn" style="display: none;">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input name="cnn-size" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-size">
+                  <input name="cnn-size" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-size" value="5">
                   <label class="mdl-textfield__label" for="cnn-size">Filter Size</label>
                   <span class="mdl-textfield__error">Input is not a number!</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input name="cnn-features" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-features">
+                  <input name="cnn-features" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-features" value="8">
                   <label class="mdl-textfield__label" for="cnn-features">Features</label>
                   <span class="mdl-textfield__error">Input is not a number!</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input name="cnn-strides" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-features">
+                  <input name="cnn-strides" class="final-input mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cnn-features" value="1">
                   <label class="mdl-textfield__label" for="cnn-strides">Stride Length</label>
                   <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+              </div>
+              <div class="tensor-data tensor-data-ops" style="display: none;">
+                <div class="mdl-textfield mdl-js-textfield getmdl-select">
+                  <input class="mdl-textfield__input" value="" id="ops-choice" readonly/>
+                  <input value="" type="hidden" name="ops-choice" />
+                  <label class="mdl-textfield__label" for="ops-choice">Operation</label>
+                  <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="ops-choice">
+                    <li class="mdl-menu__item" data-val="flatten" data-selected="true">Flatten</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -106,6 +117,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <!-- Material Design -->
   <script src="./external/material.min.js"></script>
+  <script src="./external/getmdl-select.min.js"></script>
   <!-- https://code.getmdl.io/1.3.0/material.min.js -->
   <!-- Charts JS -->
   <script src="./external/Chart.min.js"></script>

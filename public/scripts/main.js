@@ -7,8 +7,9 @@
 
   utils.createModel = function (layers) {
     const model = tf.sequential();
-    model.add(tf.layers.flatten({
-      inputShape: [28, 28, 1]
+    model.add(tf.layers.reshape({
+      inputShape: [28, 28, 1],
+      targetShape: [28, 28, 1]
     }));
 
     layers.forEach((layer, index) => {
@@ -24,14 +25,19 @@
           break;
         case "cnn":
           model.add(tf.layers.conv2d({
-            kernelSize: layer.size,
-            features: layer.features,
-            strides: layers.strides,
+            kernelSize: layer.kernelSize.valueOf(),
+            filters: layer.features.valueOf(),
+            strides: layer.strides.valueOf(),
             kernelInitializer: 'varianceScaling',
             activation: activation
           }));
           break;
         case "ops":
+          switch(layer.operation){
+            case "flatten":
+              model.add(tf.layers.flatten());
+              break;
+          }
           break;
       }
     });
