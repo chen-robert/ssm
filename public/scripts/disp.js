@@ -125,8 +125,7 @@ $(function () {
             "ticks": {
               "beginAtZero": true,
               min: 0,
-              max: 1,
-              stepSize: 0.1
+              max: 1
             },
             position: "right",
             id: "accur",
