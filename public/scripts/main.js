@@ -1,6 +1,9 @@
 (async function () {
   const data = new MnistData();
-  data.load();
+  await data.load();
+  
+  $(() => $("#preload-view").hide());
+  
 
   const utils = {};
   utils.data = data;
