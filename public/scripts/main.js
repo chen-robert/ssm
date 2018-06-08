@@ -98,15 +98,18 @@
     }
   }
 
-  utils.predict = function (model) {
+  utils.predict = function (model, batch) {
 
     tf.tidy(() => {
-      const batch = data.nextTestBatch(1);
-
-      const output = model.predict(batch.xs.reshape([-1, 28, 28, 1]));
-      window.disp.renderImage(batch.xs.slice([0, 0], [1, 28 ** 2]));
+      if(batch === undefined){
+        batch = data.nextTestBatch(1).xs;
+      }
+      const output = model.predict(batch.reshape([-1, 28, 28, 1]));
+      window.disp.renderImage(batch.slice([0, 0], [1, 28 ** 2]));
 
       window.disp.renderProbs(output.dataSync());
+      
+      batch.dispose();
     });
   }
 

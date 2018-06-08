@@ -1,6 +1,6 @@
 $(function () {
+  const util = {};
   const uiData = {};
-  let network = null;
 
   uiData.layers = [];
   uiData.network = "fc";
@@ -77,10 +77,10 @@ $(function () {
         }
         break;
     }
-    setRunning(false);
+    util.setRunning(false);
   }
 
-  function setRunning(val) {
+  util.setRunning = function (val) {
     $("#train-button i").text(val ? "stop" : "play_arrow");
     uiData.running = val;
   }
@@ -93,7 +93,7 @@ $(function () {
       model = window.ml.createModel(uiData.layers);
     }
 
-    setRunning(!uiData.running);
+    util.setRunning(!uiData.running);
   });
 
   $(".final-input").keypress((e) => {
@@ -140,4 +140,6 @@ $(function () {
     setTimeout(trainingLoop, 1000);
   }
   trainingLoop();
+  
+  window.ui = util;
 });

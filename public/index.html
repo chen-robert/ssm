@@ -55,6 +55,10 @@
           <div class="mdl-card mdl-cell mdl-cell--6-col mdl-color--white mdl-shadow--2dp">
             <canvas id="loss-disp" width="500px" height="500px"></canvas>
           </div>
+          <!-- Card that displays uploaded image -->
+          <div class="mdl-card mdl-cell mdl-cell--6-col mdl-color--white mdl-shadow--2dp">
+            <input type="file" accept="image/*" id="img-drag"/>
+          </div>
         </div>
         <div class="mdl-cell mdl-cell--7-col" style="margin-top: 0px;">
           <!-- Area where the model is displayed -->
@@ -152,6 +156,7 @@
   <script src="./scripts/main.js"></script>
   <script src="./scripts/ui.js"></script>
   <script src="./scripts/disp.js"></script>
+  <script src="./scripts/drag.js"></script>
 </body>
 
 </html>
