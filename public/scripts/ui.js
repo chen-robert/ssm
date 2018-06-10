@@ -91,6 +91,8 @@ $(function () {
     if (uiData.rebuild) {
       uiData.rebuild = false;
       model = window.ml.createModel(uiData.layers);
+      
+      $("#drag-blocker").hide();
     }
 
     util.setRunning(!uiData.running);

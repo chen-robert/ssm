@@ -1,4 +1,3 @@
-
 .tensor-op {
   background-color: blue;
   width: 100px;
@@ -34,12 +33,53 @@
   float: right;
 }
 
-#img-disp {
+#img-drag {
+  outline: 2px dashed gray;
+  outline-offset: -10px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-html{
-  user-select: none; 
+#img-drag:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+  
+  transition: all 0.2s ease;
 }
+
+html {
+  user-select: none;
+}
+
+.error-text {
+  display: none;
+}
+
+.drag-error {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+  
+  transition: all 0.2s ease;
+}
+
+.is-hover {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.drag-error .error-text {
+  display: block !important;
+}
+
+.drag-error .drag-display-text {
+  display: none !important;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
 #preload-view {
   width: 100vw;
   height: 100vh;
@@ -47,22 +87,32 @@ html{
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  
+
   z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+#drag-blocker{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .navigation-link {
   font-weight: 700;
   font-size: 14px;
-  
+
   background-color: transparent;
 }
 
-.navigation-link:hover{
-  background-color: rgba(0,0,0,0.1);
+.navigation-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
   color: red !important;
 }
-
