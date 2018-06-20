@@ -31,7 +31,7 @@ Let’s model our computer software (and/or hardware) after the brain
 ![MCP Neuron](gitpitch/img/mcp_neuron.jpg)
 ---
 ### Bias
-If the input array is all zeroes, our output has to be 0.
+**Problem**: If the input array is all zeroes, our output has to be 0.
 
 We add a **bias** to the output
 
