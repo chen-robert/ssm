@@ -35,7 +35,7 @@ Let’s model our computer software (and/or hardware) after the brain
 
 We add a **bias** to the output
 
-![Neuron](gitpitch/img/neuron_example.jpg)
+![Neuron](gitpitch/img/perceptron.jpg)
 ---
 ### Java Implementation
 ```
