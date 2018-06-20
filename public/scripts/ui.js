@@ -38,9 +38,6 @@ $(function () {
         uiData.currDim = [outDims];
         appendTensor("Dense", "horizontal_split");
 
-        $("input[name=output-dim]").val("");
-        updateMdl();
-
         if (outDims == 10) {
           $("#train-button").removeAttr("disabled");
         } else {
